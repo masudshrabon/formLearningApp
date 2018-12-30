@@ -23,6 +23,23 @@ export class ReactiveFormComponent implements OnInit {
       'hobbies': new FormArray([])
     });
 
+    /** setValue to set/overwrite values of the whole form */
+    this.signupForm.setValue({
+      userData: {
+        username: 'Test',
+        email: 'test@gmail.com'
+      },
+      gender: 'male',
+      hobbies: []
+    });
+
+    /** patchValue of form object to set/overwrite specific values of the form */
+    this.signupForm.patchValue({
+      userData: {
+        username: 'Ana'
+      }
+    });
+
     /* this.signupForm.valueChanges.subscribe(
       (value) => console.log(value)
     ); */
@@ -38,6 +55,7 @@ export class ReactiveFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.signupForm);
+    this.signupForm.reset();
   }
 
   forbiddenNames(control: FormControl): { [s: string]: boolean } {
